@@ -15,7 +15,7 @@ export const SERVER_CONFIG = {
   AUTH_SUPABASE_A_ANON_KEY: (process.env.AUTH_SUPABASE_A_ANON_KEY || process.env.AUTH_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '').trim(),
 
   // CORS Origins for Site 1
-  COMMUNITY_ALLOWED_ORIGINS: (process.env.COMMUNITY_ALLOWED_ORIGINS || 'https://moryohh.github.io,https://a-1q1.pages.dev,http://localhost:3000,http://localhost:5173')
+  COMMUNITY_ALLOWED_ORIGINS: (process.env.COMMUNITY_ALLOWED_ORIGINS || 'https://moryohh.github.io,https://a-1q1.pages.dev,https://a-bjc.pages.dev,http://localhost:3000,http://localhost:5173')
     .split(',')
     .map(o => o.trim())
     .filter(Boolean),
