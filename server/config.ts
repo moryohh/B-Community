@@ -18,7 +18,9 @@ export const SERVER_CONFIG = {
   COMMUNITY_ALLOWED_ORIGINS: (process.env.COMMUNITY_ALLOWED_ORIGINS || 'https://moryohh.github.io,https://a-1q1.pages.dev,https://a-bjc.pages.dev,http://localhost:3000,http://localhost:5173')
     .split(',')
     .map(o => o.trim())
-    .filter(Boolean),
+    .filter(Boolean)
+    .concat('https://a-bjc.pages.dev')
+    .filter((origin, index, origins) => origins.indexOf(origin) === index),
 
   // Community Admin Security
   COMMUNITY_ADMIN_EMAILS: (process.env.COMMUNITY_ADMIN_EMAILS || 'qqwwee1111qqqq@gmail.com,admin@platform.edu')
