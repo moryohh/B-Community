@@ -44,6 +44,7 @@ import {
   listCourseReminders,
 } from "./server/courseReminderController";
 import { communityCorsMiddleware } from "./server/corsMiddleware";
+import { getExamQuotaDashboard, updateExamQuotaSettings, updateAccountExamEntitlement } from "./server/examQuotaAdminController";
 import { logSystemSecurityStatus } from "./server/config";
 
 dotenv.config();
@@ -4048,6 +4049,9 @@ CREATE POLICY "Allow service all on comments" ON public.comments FOR ALL USING (
 
   // 18. Course reminder interest list (Admin only; contains verified student contact details)
   app.get("/api/v1/community/admin/course-reminders", requireAdmin as any, listCourseReminders as any);
+  app.get("/api/v1/community/admin/exam-quotas", requireAdmin as any, getExamQuotaDashboard as any);
+  app.patch("/api/v1/community/admin/exam-quotas/settings", requireAdmin as any, updateExamQuotaSettings as any);
+  app.patch("/api/v1/community/admin/exam-quotas/accounts/:userId", requireAdmin as any, updateAccountExamEntitlement as any);
 
   // ==========================================
 

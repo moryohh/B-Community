@@ -38,6 +38,7 @@ import { FacebookPost, FacebookComment } from '../types';
 import { importCommunityJsonData, getStoredAuthToken, setStoredAuthToken } from '../api';
 import { DashboardAdminsManagement } from './DashboardAdminsManagement';
 import { SupabaseAdminLogin } from './SupabaseAdminLogin';
+import { ExamQuotaManagement } from './ExamQuotaManagement';
 
 interface CommunityAdminDashboardProps {
   posts: FacebookPost[];
@@ -93,7 +94,7 @@ export function CommunityAdminDashboard({
   const [batchReport, setBatchReport] = useState<any | null>(null);
 
   // Active Admin Sub-tab
-  const [adminTab, setAdminTab] = useState<'matrix' | 'pending_queue' | 'reports' | 'admins'>('matrix');
+  const [adminTab, setAdminTab] = useState<'matrix' | 'pending_queue' | 'reports' | 'admins' | 'exam_quotas'>('matrix');
 
   // Quick stats calculation
   const stats = useMemo(() => {
@@ -425,6 +426,14 @@ export function CommunityAdminDashboard({
           <span>حسابات المشرفين (3 مقاعد)</span>
         </button>
 
+        <button
+          onClick={() => setAdminTab('exam_quotas')}
+          className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-colors cursor-pointer ${adminTab === 'exam_quotas' ? 'bg-emerald-600 text-white shadow-xs' : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/60'}`}
+        >
+          <UserCheck className="w-3.5 h-3.5" />
+          <span>حدود امتحانات موقع A</span>
+        </button>
+
         <div className="mr-auto">
           <button
             onClick={() => onRefreshData()}
@@ -441,6 +450,8 @@ export function CommunityAdminDashboard({
       {/* ========================================================================= */}
       {adminTab === 'admins' ? (
         <DashboardAdminsManagement />
+      ) : adminTab === 'exam_quotas' ? (
+        <ExamQuotaManagement />
       ) : (
         <>
           {/* 4. ADMIN FILTER & TOOLBAR (أدوات التصفية والتحكم بعدد المنشورات) */}

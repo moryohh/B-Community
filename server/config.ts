@@ -13,6 +13,7 @@ export const SERVER_CONFIG = {
   // SUPABASE A: Educational & Auth DB (JWT validation for Site 1 students/admins)
   AUTH_SUPABASE_A_URL: (process.env.AUTH_SUPABASE_A_URL || process.env.AUTH_SUPABASE_URL || process.env.SUPABASE_A_URL || '').trim(),
   AUTH_SUPABASE_A_ANON_KEY: (process.env.AUTH_SUPABASE_A_ANON_KEY || process.env.AUTH_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '').trim(),
+  AUTH_SUPABASE_A_SERVICE_ROLE_KEY: (process.env.AUTH_SUPABASE_A_SERVICE_ROLE_KEY || process.env.SUPABASE_A_SERVICE_ROLE_KEY || '').trim(),
 
   // CORS Origins for Site 1
   COMMUNITY_ALLOWED_ORIGINS: (process.env.COMMUNITY_ALLOWED_ORIGINS || 'https://moryohh.github.io,https://a-1q1.pages.dev,https://a-bjc.pages.dev,http://localhost:3000,http://localhost:5173')
@@ -70,6 +71,7 @@ export function logSystemSecurityStatus() {
     hasCommunityServiceRole: Boolean(SERVER_CONFIG.COMMUNITY_SUPABASE_SERVICE_ROLE_KEY),
     hasAuthAUrl: Boolean(SERVER_CONFIG.AUTH_SUPABASE_A_URL),
     hasAuthAAnonKey: Boolean(SERVER_CONFIG.AUTH_SUPABASE_A_ANON_KEY),
+    hasAuthAServiceRole: Boolean(SERVER_CONFIG.AUTH_SUPABASE_A_SERVICE_ROLE_KEY),
     hasOcrApiKey: Boolean(SERVER_CONFIG.OCR_API_KEY_1 || SERVER_CONFIG.OCR_API_KEY_2 || SERVER_CONFIG.OCR_API_KEY_3 || SERVER_CONFIG.OCR_API_KEY),
     configuredOcrBases: [SERVER_CONFIG.OCR_API_KEY_1, SERVER_CONFIG.OCR_API_KEY_2, SERVER_CONFIG.OCR_API_KEY_3].filter(Boolean).length,
     hasDeepseekApiKey: Boolean(SERVER_CONFIG.DEEPSEEK_API_KEY),

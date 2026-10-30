@@ -16,6 +16,7 @@ const AUTH_SUPABASE_A_ANON_KEY = SERVER_CONFIG.AUTH_SUPABASE_A_ANON_KEY;
 
 let communitySupabaseClient: SupabaseClient | null = null;
 let authSupabaseAClient: SupabaseClient | null = null;
+let adminSupabaseAClient: SupabaseClient | null = null;
 
 /**
  * Get dedicated Supabase B client for Community operations (Server-side only)
@@ -40,6 +41,16 @@ export function getAuthAClient(): SupabaseClient | null {
     });
   }
   return authSupabaseAClient;
+}
+
+export function getAdminAClient(): SupabaseClient | null {
+  const key = SERVER_CONFIG.AUTH_SUPABASE_A_SERVICE_ROLE_KEY;
+  if (!adminSupabaseAClient && AUTH_SUPABASE_A_URL && key) {
+    adminSupabaseAClient = createClient(AUTH_SUPABASE_A_URL, key, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+  }
+  return adminSupabaseAClient;
 }
 
 // Master Admin Emails & Recovery Key
